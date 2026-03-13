@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    overflow: hidden;
 }
 
 body{
@@ -36,6 +37,7 @@ display: none;
     height: 10px;
     border: solid 1px black;
     background-color: white;
+    margin: auto;
 }
 .bar{
     width: 0px;
