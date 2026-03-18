@@ -1,3 +1,5 @@
+getFles();
+
 let flessen = 0;
 let donatie = 0;
 let statieGeld = 0.15;
@@ -12,6 +14,9 @@ let donatie_count = document.getElementById("donatie");
 
 // code als fles in bak valt  of als je op de test knop drukt
 function doneer(){
+
+// verander naar een post naar de json 
+
 flessen += 1;
 donatie = flessen * statieGeld;
 
@@ -28,13 +33,17 @@ document.getElementById("bar").style.width = bar + "px";
 donatie = Math.round(donatie * 100) / 100;
 
 // code die fles count en donatie weergeeft
-fles_count.innerHTML = "-" + flessen + "-";
+
+// code om de json te lezen
+
+getFles();
+
 donatie_count.innerHTML = donatie + "€";
 
 // animatie voor donatie
 // blur de count 
-fles_count.style.filter = "blur(1px)";
-donatie_count.style.filter = "blur(1px)";
+fles_count.style.filter = "blur(2px)";
+donatie_count.style.filter = "blur(2px)";
 
 // blur na pauze reseten met transition 
 function reset_blur(){
@@ -70,3 +79,8 @@ document.addEventListener("keydown", function (event) {
     }
   }
 });
+function getFles() {
+fetch ('./flessen.json')
+    .then((response) => response.json())
+    .then((json) => fles_count.innerHTML = json.count);
+}
