@@ -1,6 +1,5 @@
 getFles();
 
-let flessen = 0;
 let donatie = 0;
 let statieGeld = 0.15;
 // verander dit voor het doel tracker
@@ -28,15 +27,15 @@ if(bar > 100){
     console.log("reset");
 }
 
-document.getElementById("bar").style.width = bar + "px";
+document.getElementById("bar").style.width = bar + "%";
 // zorgen dat de donatie niet 0.599358 enzo word 
 donatie = Math.round(donatie * 100) / 100;
 
 // code die fles count en donatie weergeeft
 
-// code om de json te lezen
-
+postFles();
 getFles();
+
 
 donatie_count.innerHTML = donatie + "€";
 
@@ -79,8 +78,20 @@ document.addEventListener("keydown", function (event) {
     }
   }
 });
-function getFles() {
-fetch ('./flessen.json')
-    .then((response) => response.json())
-    .then((json) => fles_count.innerHTML = json.count);
+
+// info van fles ophalen
+function postFles() {
+    localStorage.setItem("count", flessen);
+}
+
+// nieuwe fles aantal Posten 
+async function getFles() {
+    if(localStorage.count){
+    data = localStorage.getItem("count");
+    flessen = JSON.parse(data);
+
+    } else {
+        localStorage.count = 1;
+    }
+    console.log(flessen);
 }

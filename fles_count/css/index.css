@@ -15,33 +15,53 @@ background-repeat: no-repeat;
     height: 50%;
     text-align: center;
     padding: 5%;
+    margin-top: 5%;
 
     background-color: white;
     border: 2px solid lightblue;
     border-radius: 30px;
 }
 
-.fles_count, .geld_count{
-font-size: xx-large;
+.fles_count, .geld_count, h1{
+font-size: 150px;
 transition: 0s;
 }
 /* debug */
 button{
 position: absolute;
 display: none;
+
 }
 
 /* test */
 .cont{
-    width: 100px;
-    height: 10px;
+    width: 500px;
+    height: 50px;
     border: solid 1px black;
     background-color: white;
     margin: auto;
 }
 .bar{
     width: 0px;
-    height: 10px;
+    height: 50px;
     background-color: red;
     transition: 0.5s ease-out;
+}
+
+@media screen and (min-width: 1080px) {
+
+.counter_container{
+    position: relative;
+    margin: auto;
+    width: 700px;
+    height: 50%;
+    text-align: center;
+    padding: 5%;
+    margin-top: 5%;
+
+    background-color: white;
+    border: 2px solid lightblue;
+    border-radius: 30px;
+}
+
 }
