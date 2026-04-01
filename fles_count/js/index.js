@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 getFles();
 
 let donatie = 0;
@@ -33,7 +35,7 @@ donatie = Math.round(donatie * 100) / 100;
 
 // code die fles count en donatie weergeeft
 
-postFles();
+saveFles();
 getFles();
 
 
@@ -78,20 +80,28 @@ document.addEventListener("keydown", function (event) {
     }
   }
 });
+// nieuwe fles aantal Posten 
 
-// info van fles ophalen
-function postFles() {
-    localStorage.setItem("count", flessen);
+
+
+const saveFles = () => {
+
+const finished = (error) =>{
+    if(error) (
+        console.log(error)
+        
+    )
 }
 
-// nieuwe fles aantal Posten 
-async function getFles() {
-    if(localStorage.count){
-    data = localStorage.getItem("count");
-    flessen = JSON.parse(data);
+    const count = {
+        count: "33"
+}
 
-    } else {
-        localStorage.count = 1;
-    }
-    console.log(flessen);
+const jsonData = JSON.stringify(count)
+fs.writeFile('flessen.json',jsonData,finished)
+}
+
+// info van fles ophalen
+async function getFles() {
+
 }
