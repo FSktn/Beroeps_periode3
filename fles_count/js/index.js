@@ -5,7 +5,7 @@ let statieGeld = 0.15;
 // verander dit voor het doel tracker
 let donatie_doel = 25;
 
-let bar = flessen;
+let bar = flessen * (100 / donatie_doel);
 
 // elements definen
 let fles_count = document.getElementById("flessen");
