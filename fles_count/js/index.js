@@ -1,15 +1,11 @@
-// const fs = require('fs');
-
-// const { json } = require("express");
-
-getFles();
+let flessen = localStorage.getItem("flesCount");
 
 let donatie = 0;
 let statieGeld = 0.15;
 // verander dit voor het doel tracker
 let donatie_doel = 25;
 
-let bar = 0;
+let bar = flessen;
 
 // elements definen
 let fles_count = document.getElementById("flessen");
@@ -22,11 +18,11 @@ function doneer(){
 
 // verander naar een post naar de json 
 
-flessen += 1;
+flessen++;
 donatie = flessen * statieGeld;
 
 // test 
-bar += 1 * (100 / donatie_doel);
+bar = flessen * (100 / donatie_doel);
 console.log("bar: " + bar + "%");
 if(bar > 100){
     bar -= 100;
@@ -76,52 +72,46 @@ document.addEventListener("keydown", function (event) {
   if (event.code === "Enter" ) {
     // om te switchen tussen zichtbaar en onzichtbaar
     if(pressed == false){
-        document.getElementById("TEST").style.display = "block";
+        document.getElementById("TESTD").style.display = "block";
+        document.getElementById("TESTR").style.display = "block";
         pressed = true;
     } else {
-        document.getElementById("TEST").style.display = "none";
+        document.getElementById("TESTD").style.display = "none";
+        document.getElementById("TESTR").style.display = "none";
         pressed = false;
     }
   }
 });
 // nieuwe fles aantal Posten 
 
-async function postFles() {
-fetch("./flessen.json", {
-  method: "POST",
-  body: JSON.stringify({
-    count: 33
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-});
+function postFles() {
+let newflessen = JSON.stringify(flessen);
+localStorage.setItem("flesCount", newflessen)
+
+updateCount(newflessen);
+newflessen = 0;
+
 }
 
 // info van fles ophalen
 async function getFles() {
-fetch('./flessen.json')  
-  .then(response => {  
-    // Handle the response (e.g., parse JSON)  
-    return response.json();  
-  })  
-  .then(data => {  
-    // Work with the parsed data  
-    console.log(data); 
-    const newCount = JSON.stringify(data.count);
-    flessen = newCount;
 
-    console.log(flessen); 
+let newflessen = localStorage.getItem("flesCount");
+flessen = JSON.parse(newflessen);
+console.log(flessen);
 
-    updateCount(flessen);
-  })  
-  .catch(error => {  
-    // Handle errors (e.g., network issues)  
-    console.error("Error:", error);  
-  });  
+updateCount(flessen);
+newflessen = 0;
 }
 
 function updateCount(NewFles) 
 {
 fles_count.innerHTML = NewFles;
+}
+
+function reset()
+{
+  flessen = 0;
+  postFles(flessen);
+
 }
