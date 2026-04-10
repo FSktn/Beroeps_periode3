@@ -1,4 +1,6 @@
-const fs = require('fs');
+// const fs = require('fs');
+
+// const { json } = require("express");
 
 getFles();
 
@@ -15,6 +17,8 @@ let donatie_count = document.getElementById("donatie");
 
 // code als fles in bak valt  of als je op de test knop drukt
 function doneer(){
+// testen 
+
 
 // verander naar een post naar de json 
 
@@ -23,19 +27,19 @@ donatie = flessen * statieGeld;
 
 // test 
 bar += 1 * (100 / donatie_doel);
-console.log(bar);
+console.log("bar: " + bar + "%");
 if(bar > 100){
     bar -= 100;
     console.log("reset");
 }
 
 document.getElementById("bar").style.width = bar + "%";
-// zorgen dat de donatie niet 0.599358 enzo word 
+// zorgen dat de donatie niet 0.599358 bijv. word 
 donatie = Math.round(donatie * 100) / 100;
 
 // code die fles count en donatie weergeeft
 
-saveFles();
+postFles();
 getFles();
 
 
@@ -82,26 +86,42 @@ document.addEventListener("keydown", function (event) {
 });
 // nieuwe fles aantal Posten 
 
-
-
-const saveFles = () => {
-
-const finished = (error) =>{
-    if(error) (
-        console.log(error)
-        
-    )
-}
-
-    const count = {
-        count: "33"
-}
-
-const jsonData = JSON.stringify(count)
-fs.writeFile('flessen.json',jsonData,finished)
+async function postFles() {
+fetch("./flessen.json", {
+  method: "POST",
+  body: JSON.stringify({
+    count: 33
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+});
 }
 
 // info van fles ophalen
 async function getFles() {
+fetch('./flessen.json')  
+  .then(response => {  
+    // Handle the response (e.g., parse JSON)  
+    return response.json();  
+  })  
+  .then(data => {  
+    // Work with the parsed data  
+    console.log(data); 
+    const newCount = JSON.stringify(data.count);
+    flessen = newCount;
 
+    console.log(flessen); 
+
+    updateCount(flessen);
+  })  
+  .catch(error => {  
+    // Handle errors (e.g., network issues)  
+    console.error("Error:", error);  
+  });  
+}
+
+function updateCount(NewFles) 
+{
+fles_count.innerHTML = NewFles;
 }

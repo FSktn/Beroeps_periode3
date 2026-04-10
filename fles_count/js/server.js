@@ -6,7 +6,7 @@ const path = require('path');
 // Define a route to serve the HTML file
 app.get('/', (req, res) => {
     // Send the HTML file as the response
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index'));
 });
 
 app.listen(PORT, () => {
