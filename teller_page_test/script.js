@@ -6,6 +6,8 @@ const connectSerialBtn = document.getElementById("connectSerialBtn");
 const testEventBtn = document.getElementById("testEventBtn");
 const resetBtn = document.getElementById("resetBtn");
 
+let pressed = false;
+
 let lastMotionAt = 0;
 const eventCooldownMs = 1200;
 
@@ -127,3 +129,19 @@ resetBtn.addEventListener("click", resetCounter);
 loadCount().catch((error) => {
   updateLastEvent(`Kon teller niet laden: ${error.message}`);
 });
+
+// testknoppen activeren
+document.addEventListener("keydown", function (event) {
+// If event.code was "enter", then display text
+  if (event.code === "Enter" ) {
+    // om te switchen tussen zichtbaar en onzichtbaar
+    if(pressed == false){
+        document.getElementById("testKnoppen").style.display = "block";
+        pressed = true;
+    } else {
+        document.getElementById("testKnoppen").style.display = "none";
+        pressed = false;
+    }
+  }
+});
+// nieuwe fles aantal Posten 

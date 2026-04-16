@@ -22,7 +22,7 @@
       <p id="lastEvent" class="meta">Nog geen events ontvangen.</p>
     </section>
 
-    <section class="card controls">
+    <section class="card controls" id="testKnoppen" >
       <h2>Besturing</h2>
       <div class="button-grid">
         <button id="connectSerialBtn" class="btn btn-primary" type="button">Verbind met Arduino</button>

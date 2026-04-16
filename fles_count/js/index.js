@@ -4,6 +4,7 @@ let donatie = 0;
 let statieGeld = 0.15;
 // verander dit voor het doel tracker
 let donatie_doel = 25;
+let reset_doel;
 
 let bar = flessen * (100 / donatie_doel);
 

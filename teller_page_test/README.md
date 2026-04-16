@@ -43,3 +43,7 @@ void loop() {
 ## Opslag
 
 De tellerstand wordt opgeslagen in `data/counter.json`.
+
+## testknoppen
+
+druk op de 'enter' key om de test knoppen te vinden
